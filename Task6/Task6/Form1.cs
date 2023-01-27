@@ -1,19 +1,17 @@
-using System;
-
 namespace Task6
 {
     public partial class Form1 : Form
     {
-       
+
         public class Field
         {
             public FieldType Type { get; set; }
-            public  override string ToString()
+            public override string ToString()
             {
                 return $"{Type}";
             }
         }
-      
+
         public enum FieldType
         {
             Empty,
@@ -43,9 +41,8 @@ namespace Task6
         }
 
         Random _random = new Random();
- 
         private void GenerateLevelButton_Click(object sender, EventArgs e)
-        {          
+        {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -62,6 +59,11 @@ namespace Task6
                     }
                 }
             }
+            int x = _random.Next(0, 10);
+            int y = _random.Next(0, 10);
+            _fields[x, y].Type = FieldType.Empty;
+
+
         }
     }
 }
