@@ -41,6 +41,8 @@ namespace Task6
         }
 
         Random _random = new Random();
+        int _playerStartPositionX;
+        int _playerStartPositionY;
         private void GenerateLevelButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 10; i++)
@@ -59,11 +61,9 @@ namespace Task6
                     }
                 }
             }
-            int x = _random.Next(0, 10);
-            int y = _random.Next(0, 10);
-            _fields[x, y].Type = FieldType.Empty;
-
-
+            _playerStartPositionX = _random.Next(0, 10);
+            _playerStartPositionY = _random.Next(0, 10);
+            _fields[_playerStartPositionX, _playerStartPositionY].Type = FieldType.Empty;
         }
     }
 }
