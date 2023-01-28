@@ -47,7 +47,6 @@
             this.Panel.Name = "Panel";
             this.Panel.Size = new System.Drawing.Size(500, 400);
             this.Panel.TabIndex = 0;
-            this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 
             // groupBox1
             // 

@@ -32,20 +32,16 @@ namespace Task6
         Field[,] _fields = new Field[10, 10];
         List<Command> _commands = new List<Command>();
         private Timer _timer;
+        Random _random = new Random();
+        int _playerPositionX;
+        int _playerPositionY;
+        int _stepIndex = 0;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        Random _random = new Random();
-        int _playerStartPositionX;
-        int _playerStartPositionY;
         private void GenerateLevelButton_Click(object sender, EventArgs e)
         {
             ListBox.Items.Clear();
@@ -65,12 +61,12 @@ namespace Task6
                     }
                 }
             }
-            _playerStartPositionX = _random.Next(0, 10);
-            _playerStartPositionY = _random.Next(0, 10);
-            _fields[_playerStartPositionX, _playerStartPositionY].Type = FieldType.Empty;
+            _playerPositionX = _random.Next(0, 10);
+            _playerPositionY = _random.Next(0, 10);
+            _fields[_playerPositionX, _playerPositionY].Type = FieldType.Empty;
             Draw();
         }
-        public void Draw()
+        private void Draw()
         {
             Panel.CreateGraphics().Clear(Color.White);
             Graphics g = Panel.CreateGraphics();
@@ -99,8 +95,8 @@ namespace Task6
                 }
                 Y = 0;
             }
-            var x = _playerStartPositionX * (width / 10);
-            var y = _playerStartPositionY * (height / 10);
+            var x = _playerPositionX * (width / 10);
+            var y = _playerPositionY * (height / 10);
             g.FillEllipse(Brushes.Red, x, y, width / 10, height / 10);
         }
 
@@ -128,8 +124,6 @@ namespace Task6
             ListBox.Items.Add("Вниз");
         }
 
-
-        int _stepIndex = 0;
         private void RunProgramButton_Click(object sender, EventArgs e)
         {
             TimerCallback tm = new TimerCallback(OnTimerTicked);
@@ -139,29 +133,34 @@ namespace Task6
         {
             if (_commands[_stepIndex] == Command.GoDown)
             {
-                _playerStartPositionY += 1;
+                _playerPositionY += 1;
             }
             else if (_commands[_stepIndex] == Command.GoUp)
             {
-                _playerStartPositionY -= 1;
+                _playerPositionY -= 1;
             }
             else if (_commands[_stepIndex] == Command.GoRight)
             {
-                _playerStartPositionX += 1;
+                _playerPositionX += 1;
             }
             else
             {
-                _playerStartPositionX -= 1;
+                _playerPositionX -= 1;
             }
-            if (_fields[_playerStartPositionX, _playerStartPositionY].Type == FieldType.Empty)
-            {
-                Draw();
-            }
-            else
+            if (_playerPositionX < 0 || _playerPositionY < 0 || _playerPositionX > 9 || _playerPositionY > 9)
             {
                 _timer.Dispose();
-                MessageBox.Show("Действие не может быть совершенно! Впереди препятсвие.");
-                
+                MessageBox.Show("Действие не может быть совершенно! Вы вышли за пределы игрового поля.");
+            }           
+            else if (_fields[_playerPositionX, _playerPositionY].Type == FieldType.Wall )
+            {
+                _timer.Dispose();
+                MessageBox.Show("Действие не может быть совершенно! Впереди препятствие.");
+
+            }
+            else if (_fields[_playerPositionX, _playerPositionY].Type == FieldType.Empty)
+            {
+                Draw();
             }
             _stepIndex++;
             if (_stepIndex == _commands.Count)
