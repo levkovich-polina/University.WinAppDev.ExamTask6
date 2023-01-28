@@ -1,3 +1,5 @@
+using Timer = System.Threading.Timer;
+
 namespace Task6
 {
     public partial class Form1 : Form
@@ -29,6 +31,7 @@ namespace Task6
 
         Field[,] _fields = new Field[10, 10];
         List<Command> _commands = new List<Command>();
+        private Timer _timer;
 
         public Form1()
         {
@@ -45,6 +48,7 @@ namespace Task6
         int _playerStartPositionY;
         private void GenerateLevelButton_Click(object sender, EventArgs e)
         {
+            ListBox.Items.Clear();
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -124,9 +128,46 @@ namespace Task6
             ListBox.Items.Add("Вниз");
         }
 
+
+        int _stepIndex = 0;
         private void RunProgramButton_Click(object sender, EventArgs e)
         {
-
+            TimerCallback tm = new TimerCallback(OnTimerTicked);
+            _timer = new Timer(tm, 0, 0, 100);
+        }
+        public void OnTimerTicked(object obj)
+        {
+            if (_commands[_stepIndex] == Command.GoDown)
+            {
+                _playerStartPositionY += 1;
+            }
+            else if (_commands[_stepIndex] == Command.GoUp)
+            {
+                _playerStartPositionY -= 1;
+            }
+            else if (_commands[_stepIndex] == Command.GoRight)
+            {
+                _playerStartPositionX += 1;
+            }
+            else
+            {
+                _playerStartPositionX -= 1;
+            }
+            if (_fields[_playerStartPositionX, _playerStartPositionY].Type == FieldType.Empty)
+            {
+                Draw();
+            }
+            else
+            {
+                _timer.Dispose();
+                MessageBox.Show("Действие не может быть совершенно! Впереди препятсвие.");
+                
+            }
+            _stepIndex++;
+            if (_stepIndex == _commands.Count)
+            {
+                _timer.Dispose();
+            }
         }
     }
 }
