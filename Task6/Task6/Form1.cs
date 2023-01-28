@@ -70,6 +70,7 @@ namespace Task6
         }
         public void Draw(Graphics g)
         {
+            Panel.CreateGraphics().Clear(Color.White);
             int width = Panel.ClientSize.Width;
             int height = Panel.ClientSize.Height;
             for (int x = 0; x < width; x += width / 10)
@@ -80,7 +81,21 @@ namespace Task6
             {
                 g.DrawLine(new Pen(Color.Black), 0, y, width, y);
             }
-
+            int X = 0;
+            int Y = 0;
+            for (int x = 0; x < 10; x++)
+            {
+                X += width / 10;
+                for (int y = 0; y < 10; y++)
+                {
+                    Y += height / 10;
+                    if (_fields[x, y].Type == FieldType.Wall)
+                    {
+                        g.FillRectangle(Brushes.Gray, X, Y, width / 10, height / 10);
+                    }
+                }
+                Y = 0;
+            }
         }
     }
 }
