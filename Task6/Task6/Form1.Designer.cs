@@ -45,7 +45,7 @@
             this.Panel.BackColor = System.Drawing.SystemColors.Window;
             this.Panel.Location = new System.Drawing.Point(-1, 1);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(472, 353);
+            this.Panel.Size = new System.Drawing.Size(500, 400);
             this.Panel.TabIndex = 0;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 
@@ -71,6 +71,7 @@
             this.DownButton.TabIndex = 4;
             this.DownButton.Text = "Вниз";
             this.DownButton.UseVisualStyleBackColor = true;
+            this.DownButton.Click += new System.EventHandler(this.DownButton_Click);
             // 
             // RightButton
             // 
@@ -80,6 +81,7 @@
             this.RightButton.TabIndex = 3;
             this.RightButton.Text = "Вправо";
             this.RightButton.UseVisualStyleBackColor = true;
+            this.RightButton.Click += new System.EventHandler(this.RightButton_Click);
             // 
             // LeftButton
             // 
@@ -89,6 +91,7 @@
             this.LeftButton.TabIndex = 2;
             this.LeftButton.Text = "Влево";
             this.LeftButton.UseVisualStyleBackColor = true;
+            this.LeftButton.Click += new System.EventHandler(this.LeftButton_Click);
             // 
             // UpButton
             // 
@@ -98,6 +101,7 @@
             this.UpButton.TabIndex = 1;
             this.UpButton.Text = "Вверх";
             this.UpButton.UseVisualStyleBackColor = true;
+            this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
             // 
             // ListBox
             // 
@@ -110,7 +114,7 @@
             // 
             // GenerateLevelButton
             // 
-            this.GenerateLevelButton.Location = new System.Drawing.Point(12, 396);
+            this.GenerateLevelButton.Location = new System.Drawing.Point(12, 422);
             this.GenerateLevelButton.Name = "GenerateLevelButton";
             this.GenerateLevelButton.Size = new System.Drawing.Size(185, 42);
             this.GenerateLevelButton.TabIndex = 2;
@@ -120,18 +124,19 @@
             // 
             // RunProgramButton
             // 
-            this.RunProgramButton.Location = new System.Drawing.Point(286, 396);
+            this.RunProgramButton.Location = new System.Drawing.Point(314, 422);
             this.RunProgramButton.Name = "RunProgramButton";
             this.RunProgramButton.Size = new System.Drawing.Size(185, 42);
             this.RunProgramButton.TabIndex = 3;
             this.RunProgramButton.Text = "Выполнить программу";
             this.RunProgramButton.UseVisualStyleBackColor = true;
+            this.RunProgramButton.Click += new System.EventHandler(this.RunProgramButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 476);
             this.Controls.Add(this.RunProgramButton);
             this.Controls.Add(this.GenerateLevelButton);
             this.Controls.Add(this.groupBox1);
