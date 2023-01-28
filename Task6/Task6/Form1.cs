@@ -64,6 +64,23 @@ namespace Task6
             _playerStartPositionX = _random.Next(0, 10);
             _playerStartPositionY = _random.Next(0, 10);
             _fields[_playerStartPositionX, _playerStartPositionY].Type = FieldType.Empty;
+
+            Graphics g = Panel.CreateGraphics();
+            Draw(g);
+        }
+        public void Draw(Graphics g)
+        {
+            int width = Panel.ClientSize.Width;
+            int height = Panel.ClientSize.Height;
+            for (int x = 0; x < width; x += width / 10)
+            {
+                g.DrawLine(new Pen(Color.Black), x, 0, x, height);
+            }
+            for (int y = 0; y < height; y += height / 10)
+            {
+                g.DrawLine(new Pen(Color.Black), 0, y, width, y);
+            }
+
         }
     }
 }

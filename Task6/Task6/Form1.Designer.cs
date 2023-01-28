@@ -45,7 +45,7 @@
             this.Panel.BackColor = System.Drawing.SystemColors.Window;
             this.Panel.Location = new System.Drawing.Point(-1, 1);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(486, 369);
+            this.Panel.Size = new System.Drawing.Size(472, 353);
             this.Panel.TabIndex = 0;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 
